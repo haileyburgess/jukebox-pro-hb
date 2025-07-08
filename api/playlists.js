@@ -45,7 +45,7 @@ router
     const tracks = await getTracksByPlaylistId(req.playlist.id);
     res.send(tracks);
   })
-  .post(async (req, res) => {
+  .post(requireBody(["trackId"]), async (req, res) => {
     const { trackId } = req.body;
     const playlistTrack = await createPlaylistTrack(req.playlist.id, trackId);
     res.status(201).send(playlistTrack);

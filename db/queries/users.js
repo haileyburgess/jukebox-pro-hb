@@ -16,6 +16,18 @@ export async function createUser(username, password) {
   return user;
 }
 
+export async function getUserById(id) {
+  const sql = `
+    SELECT *
+    FROM users 
+    WHERE username = $1
+    `;
+  const {
+    rows: [user],
+  } = await db.query(sql, [id]);
+  return user;
+}
+
 export async function getUserByUsernameAndPassword(username, password) {
   const sql = `
     SELECT * 

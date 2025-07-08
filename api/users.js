@@ -12,7 +12,7 @@ router
     const { username, password } = req.body;
     const user = await createUser(username, password);
 
-    const token = createToken({ id: user.id });
+    const token = await createToken({ id: user.id });
     res.status(201).send(token);
   });
 
